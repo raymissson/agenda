@@ -3,9 +3,12 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ContactProvider } from '../providers/contact/contact';
+import { ContactPageModule } from '../pages/contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -14,7 +17,17 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    ContactPageModule,
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyDVtSEdnOukHOyHVpa-YM_BEQulFfMe5HE",
+      authDomain: "agenda-c0b31.firebaseapp.com",
+      databaseURL: "https://agenda-c0b31.firebaseio.com",
+      projectId: "agenda-c0b31",
+      storageBucket: "agenda-c0b31.appspot.com",
+      messagingSenderId: "747628637751"
+    }),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -24,7 +37,8 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    ContactProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
