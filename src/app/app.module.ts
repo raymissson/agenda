@@ -9,6 +9,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ContactProvider } from '../providers/contact/contact';
 import { ContactPageModule } from '../pages/contact/contact.module';
+import { IntroPageModule } from '../pages/intro/intro.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ContactPageModule } from '../pages/contact/contact.module';
   ],
   imports: [
     BrowserModule,
+    IntroPageModule,
     ContactPageModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp({
